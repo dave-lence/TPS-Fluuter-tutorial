@@ -3,17 +3,17 @@ import 'package:flutter_application_1/navigation/bottom_Navigatr.dart';
 import 'package:flutter_application_1/navigation/menu_Drawer.dart';
 
 class BmiScreen extends StatefulWidget {
-  const BmiScreen({Key? key}) : super(key: key);
+  const BmiScreen({Key? key}) : super(key: key); // this is the constructor of the widget class (BmiScreen class). The key is a unique i dentifier for the widget, The super(key: key) calls the constructor of the parent class, which in this case is StatelessWidget
 
   @override
-  State<BmiScreen> createState() => _BmiScreenState();
+  State<BmiScreen> createState() => _BmiScreenState(); // this is the create state method required by the stateful widget, it is used to create an instance of the state
 }
 
 class _BmiScreenState extends State<BmiScreen> {
-  TextEditingController txtHeight = TextEditingController();
+  TextEditingController txtHeight = TextEditingController(); // Text-editing-controller contols the value in the text input
   TextEditingController txtWeight = TextEditingController();
 
-  final double fontSize = 18;
+  final double fontSize = 18; //final is used to set var that is final and its state wont be udated
 
   String weightLabel = "";
   String heightLabel = "";
@@ -23,24 +23,25 @@ class _BmiScreenState extends State<BmiScreen> {
   bool isImperial = false;
 
   double? height;
-  double? weight;
+  double? weight; // double is a data type that is used to store floating point numbers, it holds numbers with decimals
   late List<bool> isSelected;
 
   @override
   void initState() {
     // TODO: implement initState
-    isSelected = [isMetric, isImperial];
+    isSelected = [isMetric, isImperial]; // initilizing state if toggle button
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    // the build method is basically the method that builds the UI
     heightLabel =
         "Please insert your height in ${(isMetric) ? "meters" : "height"}";
     weightLabel =
         "Please enter your weight in ${(isImperial) ? "kilos" : "pounds"}";
 
-    return Scaffold(
+    return Scaffold( // scafold widgets holds differents type of widget
         appBar: AppBar(title: const Text("BMI Calculator")),
         drawer: const MenuDrawer(),
         bottomNavigationBar: const BottomNav(),
@@ -97,6 +98,7 @@ class _BmiScreenState extends State<BmiScreen> {
         ));
   }
 
+ //void is just like a function decleration
   void toggleBtn(value) {
     if (value == 0) {
       isMetric = true;
@@ -106,7 +108,7 @@ class _BmiScreenState extends State<BmiScreen> {
       isImperial = true;
     }
     setState(() {
-      isSelected = [isMetric, isImperial];
+      isSelected = [isMetric, isImperial]; // set state here sets the state of the toggle button
     });
   }
 
@@ -119,8 +121,8 @@ class _BmiScreenState extends State<BmiScreen> {
     } else {
       bmi = weight * 703 / (height * height);
     }
+    //set state here is setting the state of the result
     setState(() {
-  
       result = "Your BMI is " + bmi.toStringAsFixed(2);
     });
   }
