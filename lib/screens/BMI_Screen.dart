@@ -45,56 +45,58 @@ class _BmiScreenState extends State<BmiScreen> {
         appBar: AppBar(title: const Text("BMI Calculator")),
         drawer: const MenuDrawer(),
         bottomNavigationBar: const BottomNav(),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ToggleButtons(
-                  // ignore: sort_child_properties_last
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text("Metric", style: TextStyle(fontSize: fontSize)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child:
-                          Text("Imperial", style: TextStyle(fontSize: fontSize)),
-                    )
-                  ], isSelected: isSelected, onPressed: toggleBtn),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(28.0),
-              child: TextField(
-                controller: txtHeight,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(hintText: heightLabel),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ToggleButtons(
+                    // ignore: sort_child_properties_last
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Text("Metric", style: TextStyle(fontSize: fontSize)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child:
+                            Text("Imperial", style: TextStyle(fontSize: fontSize)),
+                      )
+                    ], isSelected: isSelected, onPressed: toggleBtn),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(28.0),
-              child: TextField(
-                  controller: txtWeight,
+              Padding(
+                padding: const EdgeInsets.all(28.0),
+                child: TextField(
+                  controller: txtHeight,
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(hintText: weightLabel)),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(38.0),
-              child: ElevatedButton(
-                onPressed: findBmi,
-                child:  Text(
-                  ' Calculate BMI',
-                  style:  TextStyle(
-                    fontSize: fontSize,
+                  decoration: InputDecoration(hintText: heightLabel),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(28.0),
+                child: TextField(
+                    controller: txtWeight,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(hintText: weightLabel)),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(38.0),
+                child: ElevatedButton(
+                  onPressed: findBmi,
+                  child:  Text(
+                    ' Calculate BMI',
+                    style:  TextStyle(
+                      fontSize: fontSize,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Text(
-              result,
-              style: TextStyle(fontSize: fontSize),
-            ),
-          ],
+              Text(
+                result,
+                style: TextStyle(fontSize: fontSize),
+              ),
+            ],
+          ),
         ));
   }
 
