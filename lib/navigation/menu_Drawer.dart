@@ -3,11 +3,14 @@
 import "package:flutter/material.dart";
 import 'package:flutter_application_1/screens/BMI_Screen.dart';
 import 'package:flutter_application_1/screens/Intro_Screen.dart';
+import 'package:flutter_application_1/screens/Weather_Screen.dart';
 
-
-
-class MenuDrawer extends StatelessWidget { //stateless widget are widget whos state does not change through out its life time
-  const MenuDrawer({Key? key}) : super(key: key); // this is the constructor of the widget class (MenuDrawer class). The key is a unique i dentifier for the widget, The super(key: key) calls the constructor of the parent class, which in this case is StatelessWidget
+class MenuDrawer extends StatelessWidget {
+  //stateless widget are widget whos state does not change through out its life time
+  const MenuDrawer({Key? key})
+      : super(
+            key:
+                key); // this is the constructor of the widget class (MenuDrawer class). The key is a unique i dentifier for the widget, The super(key: key) calls the constructor of the parent class, which in this case is StatelessWidget
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +35,11 @@ class MenuDrawer extends StatelessWidget { //stateless widget are widget whos st
         decoration: const BoxDecoration(color: Colors.blueGrey),
         child: const Text(
           "Globo Fitness",
-          style: const TextStyle(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 24),
+          style: const TextStyle(
+              color: Color.fromRGBO(255, 255, 255, 1), fontSize: 24),
         )));
-        
+
+    // ignore: avoid_function_literals_in_foreach_calls
     menuTitles.forEach((String element) {
       Widget screen = Container();
       menuItems.add(ListTile(
@@ -45,16 +50,19 @@ class MenuDrawer extends StatelessWidget { //stateless widget are widget whos st
         onTap: () {
           switch (element) {
             case 'Home':
-              screen = IntroScreen();
+              screen = const IntroScreen();
               break;
             case "BMI Calculator":
-              screen = BmiScreen();
+              screen = const BmiScreen();
+              break;
+            case "Weather":
+              screen = const WeatherScreen();
               break;
             default:
           }
           Navigator.of(context).pop();
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => screen));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => screen));
         },
       ));
     });

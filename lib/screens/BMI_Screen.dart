@@ -2,6 +2,8 @@ import "package:flutter/material.dart";
 import 'package:flutter_application_1/navigation/bottom_Navigatr.dart';
 import 'package:flutter_application_1/navigation/menu_Drawer.dart';
 
+// widget are part of the UI while classes are just code.
+
 class BmiScreen extends StatefulWidget {
   const BmiScreen({Key? key}) : super(key: key); // this is the constructor of the widget class (BmiScreen class). The key is a unique i dentifier for the widget, The super(key: key) calls the constructor of the parent class, which in this case is StatelessWidget
 
@@ -125,7 +127,7 @@ class _BmiScreenState extends State<BmiScreen> {
     }
     //set state here is setting the state of the result
     setState(() {
-      result = "Your BMI is " + bmi.toStringAsFixed(2);
+      result = "Your BMI is ${bmi.toStringAsFixed(2)}";
     });
   }
 }
