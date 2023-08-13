@@ -18,4 +18,36 @@ class SPHelper{
     // key must be a string    // sessionMap converted to string
    prefs.setString(session.id.toString(), json.encode(session.toJson())); // sharedPreferences cant take an object as an argument thats why its converted  to json string with json.encode and back to and object with session.toJson
   }
+
+  // funtion that returns a list of session from the sharedPreferences
+  List<Session> getSessions() {
+     List<Session> sessions = [];
+     Set<String> keys = prefs.getKeys();
+      keys.forEach((String key) {
+        if(key != "counter"){
+        Session session = Session.fromJson(jsonDecode(prefs.getString(key) ?? ""));
+        sessions.add(session);
+        }
+       });
+
+       return sessions;
+  }
+
+  
+// this function handles the id increament for us
+  Future setIdCounter() async{
+    int counter = prefs.getInt("counter") ?? 0;
+    counter++;
+    await prefs.setInt("counter", counter);
+  }
+
+  // this function help us get the id crount from sharedPreferences
+  int getIdCounter(){
+   return prefs.getInt("counter") ?? 0;
+  }
+
+   //function to delete a training session
+   Future deleteSession(int id) async{
+    return prefs.remove(id.toString());
+   }
 }
